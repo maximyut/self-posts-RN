@@ -10,22 +10,21 @@ import { BookedScreen } from "../screens/BookedScreen";
 import { THEME } from "../theme";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
+const navigatorOptions = {
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "white",
+    },
+    headerTintColor: Platform.OS === "android" ? "white" : THEME.MAIN_COLOR,
+  },
+};
+
 const PostNavigator = createStackNavigator(
   {
     Main: MainScreen,
-    Post: {
-      screen: PostScreen,
-    },
+    Post: PostScreen,
   },
-  {
-    initialRouteName: "Main",
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "white",
-      },
-      headerTintColor: Platform.OS === "android" ? "white" : THEME.MAIN_COLOR,
-    },
-  }
+  navigatorOptions
 );
 
 const BookedNavigator = createStackNavigator(
@@ -33,14 +32,7 @@ const BookedNavigator = createStackNavigator(
     Booked: BookedScreen,
     Post: PostScreen,
   },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "white",
-      },
-      headerTintColor: Platform.OS === "android" ? "white" : THEME.MAIN_COLOR,
-    },
-  }
+  navigatorOptions
 );
 
 const bottomTabsConfig = {
@@ -67,8 +59,8 @@ const bottomTabsConfig = {
 const BottomNavigator =
   Platform.OS === "android"
     ? createMaterialBottomTabNavigator(bottomTabsConfig, {
-      activeTintColor: "white",
-      shifting: true,
+        activeTintColor: "white",
+        shifting: true,
         barStyle: {
           backgroundColor: THEME.MAIN_COLOR,
         },
