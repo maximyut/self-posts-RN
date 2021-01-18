@@ -119,9 +119,6 @@ const MainNavigator = createDrawerNavigator(
       labelStyle: {
         fontFamily: "bold",
       },
-      contentContainerStyle: {
-        backgroundColor: "black",
-      },
     },
   }
 );
