@@ -4,6 +4,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import { MainScreen } from "../screens/MainScreen";
 import { PostScreen } from "../screens/PostScreen";
 import { THEME } from "../theme";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 
 const PostNavigator = createStackNavigator(
   {
