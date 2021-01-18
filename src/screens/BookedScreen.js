@@ -18,8 +18,8 @@ export const BookedScreen = ({ navigation }) => {
   return <PostList data={data} onOpen={openPostHandler} />;
 };
 
-BookedScreen.navigationOptions = {
-  headerTitle: "Избранное",
+BookedScreen.navigationOptions = ({ navigation }) => ({
+  headerTitle: "Мой блог",
   headerRight: () => (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
@@ -34,8 +34,8 @@ BookedScreen.navigationOptions = {
       <Item
         title="Toggle Drawer"
         iconName="ios-menu"
-        onPress={() => console.log("press photo")}
+        onPress={() => navigation.toggleDrawer()}
       />
     </HeaderButtons>
   ),
-};
+});
