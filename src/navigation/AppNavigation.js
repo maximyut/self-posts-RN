@@ -77,16 +77,53 @@ const BottomNavigator =
         },
       });
 
-const MainNavigator = createDrawerNavigator({
-  PostTabs: {
-    screen: BottomNavigator,
+const AboutNavigator = createStackNavigator(
+  {
+    About: AboutScreen,
   },
-  About: {
-    screen: AboutScreen,
+  navigatorOptions
+);
+
+const CreateNavigator = createStackNavigator(
+  {
+    Create: CreateScreen,
   },
-  Create: {
-    screen: CreateScreen,
+  navigatorOptions
+);
+
+const MainNavigator = createDrawerNavigator(
+  {
+    PostTabs: {
+      screen: BottomNavigator,
+      navigationOptions: {
+        drawerLabel: "Главная",
+        // drawerIcon: <Ionicons name='ios-star'/>
+      },
+    },
+    Create: {
+      screen: CreateNavigator,
+      navigationOptions: {
+        drawerLabel: "Новый пост",
+      },
+    },
+    About: {
+      screen: AboutNavigator,
+      navigationOptions: {
+        drawerLabel: "О приложении",
+      },
+    },
   },
-});
+  {
+    contentOptions: {
+      activeTintColor: THEME.MAIN_COLOR,
+      labelStyle: {
+        fontFamily: "bold",
+      },
+      contentContainerStyle: {
+        backgroundColor: "black",
+      },
+    },
+  }
+);
 
 export const AppNavigation = createAppContainer(MainNavigator);
