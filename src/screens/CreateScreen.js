@@ -1,10 +1,14 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 export const CreateScreen = ({ navigation }) => {
-  return <Text></Text>;
+  return (
+    <View style={styles.wrapper}>
+      <Text style={styles.title}></Text>
+    </View>
+  );
 };
 
 CreateScreen.navigationOptions = ({ navigation }) => ({
@@ -19,3 +23,14 @@ CreateScreen.navigationOptions = ({ navigation }) => ({
     </HeaderButtons>
   ),
 });
+
+const styles = StyleSheet.create({
+  wrapper: {
+    padding: 10
+  },
+  title: {
+    fontSize: 20,
+    fontFamily: 'bold',
+    
+  }
+})
