@@ -80,14 +80,13 @@ export const PostScreen = ({ navigation }) => {
 };
 
 PostScreen.navigationOptions = ({ navigation }) => {
-  const postId = navigation.getParam("postId");
   const booked = navigation.getParam("booked");
   const toggleHandler = navigation.getParam("toggleHandler");
   const date = navigation.getParam("date");
   const iconName = booked ? "ios-star" : "ios-star-outline";
 
   return {
-    headerTitle: `Пост #${postId} от ${new Date(date).toLocaleDateString()}`,
+    headerTitle: `Пост от ${new Date(date).toLocaleDateString()}`,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
         <Item title="Take photo" iconName={iconName} onPress={toggleHandler} />
