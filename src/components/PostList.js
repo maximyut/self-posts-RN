@@ -1,11 +1,17 @@
 import React from "react";
-import { View, StyleSheet, FlatList, StatusBar } from "react-native";
+import { View, StyleSheet, FlatList, Text } from "react-native";
 import { Post } from "./Post";
 
 export const PostList = ({ data, onOpen }) => {
+  if (!data.length) {
+    return (
+      <View style={styles.wrapper}>
+        <Text style={styles.noItems}>Постов нет</Text>
+      </View>
+    );
+  }
   return (
     <View style={styles.wrapper}>
-      <StatusBar backgroundColor="black" barStyle="default" />
       <FlatList
         data={data}
         keyExtractor={(post) => post.id.toString()}
@@ -19,4 +25,9 @@ const styles = StyleSheet.create({
   wrapper: {
     padding: 10,
   },
+  noItems: {
+    textAlign: 'center',
+    fontFamily: 'bold',
+    fontSize: 20
+  }
 });
