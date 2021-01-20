@@ -5,7 +5,7 @@ export async function bootstrap() {
   try {
     await Font.loadAsync({
       bold: require("../assets/fonts/OpenSans-Bold.ttf"),
-      reqular: require("../assets/fonts/OpenSans-Regular.ttf"),
+      regular: require("../assets/fonts/OpenSans-Regular.ttf"),
     });
     await DB.init();
   } catch (e) {

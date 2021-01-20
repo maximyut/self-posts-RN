@@ -1,4 +1,4 @@
 export const THEME = {
-    MAIN_COLOR: 'black',
-    DANGER_COLOR: 'RED'
-}
+  MAIN_COLOR: "black",
+  DANGER_COLOR: "RED",
+};

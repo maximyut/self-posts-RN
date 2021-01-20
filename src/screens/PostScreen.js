@@ -105,6 +105,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   text: {
-    fontFamily: "reqular",
+    fontFamily: "regular",
   },
 });

@@ -8,7 +8,7 @@ export const AboutScreen = ({ navigation }) => {
     <View style={styles.center}>
       <Text></Text>
       <Text style={styles.text}>
-        Версия приложения<Text style={styles.versions}>1.0.0</Text>
+        Версия приложения<Text style={styles.versions}>1.1.1</Text>
       </Text>
     </View>
   );

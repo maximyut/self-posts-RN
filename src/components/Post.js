@@ -1,9 +1,20 @@
 import React from "react";
-import { View, StyleSheet, ImageBackground, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 
-export const Post = ({ post, onOpen }) => {
+export const Post = ({ post, onOpen, onRemove }) => {
   return (
-    <TouchableOpacity activeOpacity={0.7} onPress={() => onOpen(post)}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={() => onOpen(post)}
+      onLongPress={() => onRemove(post)}
+    >
       <View style={styles.post}>
         <ImageBackground style={styles.img} source={{ uri: post.img }}>
           <View style={styles.textWrap}>
@@ -34,6 +45,6 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "white",
-    fontFamily: "reqular",
+    fontFamily: "regular",
   },
 });

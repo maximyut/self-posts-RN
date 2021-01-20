@@ -20,21 +20,22 @@ import { PhotoPicker } from "../components/PhotoPicker";
 export const CreateScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
-  const imgRef = useRef();
+  const [img, setImg] = useState(null);
+
+  const photoPickHandler = (uri) => {
+    setImg(uri);
+  };
 
   const saveHandler = () => {
     const post = {
       date: new Date().toJSON(),
       text: text,
-      img: imgRef.current,
+      img: img,
       booked: false,
     };
     dispatch(addPost(post));
     navigation.navigate("Main");
-  };
-
-  const photoPickHandler = (uri) => {
-    imgRef.current = uri;
+    setText("");
   };
 
   return (
@@ -54,7 +55,7 @@ export const CreateScreen = ({ navigation }) => {
             title="Создать"
             onPress={saveHandler}
             color={THEME.MAIN_COLOR}
-            disabled={!text}
+            disabled={!text || !img}
           />
         </View>
       </TouchableWithoutFeedback>
@@ -89,9 +90,5 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     borderWidth: 1,
-  },
-  img: {
-    width: "100%",
-    height: 200,
   },
 });

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, Button, Alert } from "react-native";
+import { View, StyleSheet, Image, Button, Alert, Text } from "react-native";
+import {THEME} from "../theme"
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 
@@ -29,6 +30,23 @@ export const PhotoPicker = ({ onPick }) => {
       allowsEditing: true,
       //   aspect: [16, 9],
     });
+  
+    setImage(img.uri);
+    onPick(img.uri);
+  };
+
+  const pickPhoto = async () => {
+    const hasPermissions = await askForPermissions();
+    if (!hasPermissions) {
+      return;
+    }
+
+    const img = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      // aspect: [4, 3],
+      quality: 1,
+    });
 
     setImage(img.uri);
     onPick(img.uri);
@@ -36,7 +54,19 @@ export const PhotoPicker = ({ onPick }) => {
 
   return (
     <View style={styles.wrapper}>
-      <Button title="Сделать фото" onPress={takePhoto} />
+      <View style={styles.btnWrapper}>
+        <Button
+          title="Сделать фото"
+          onPress={takePhoto}
+          color={THEME.MAIN_COLOR}
+        />
+        <Button
+          title="Выбрать фото из галереи"
+          onPress={pickPhoto}
+          color={THEME.MAIN_COLOR}
+        />
+      </View>
+
       {image && <Image style={styles.img} source={{ uri: image }} />}
     </View>
   );
@@ -46,9 +76,13 @@ const styles = StyleSheet.create({
   wrapper: {
     marginBottom: 10,
   },
+  btnWrapper: {
+    justifyContent: "space-between",
+    height: 80
+  },
   img: {
     width: "100%",
-    height: 200,
+    height: 400,
     marginTop: 10,
   },
 });

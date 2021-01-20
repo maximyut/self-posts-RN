@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet, ActivityIndicator } from "react-native";
+import { View, StyleSheet, ActivityIndicator, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { PostList } from "../components/PostList";
 import { loadPosts } from "../store/actions/post";
 import { THEME } from "../theme";
+import { removePost } from "../store/actions/post";
 
 export const MainScreen = ({ navigation }) => {
   const openPostHandler = (post) => {
@@ -14,6 +15,28 @@ export const MainScreen = ({ navigation }) => {
       date: post.date,
       booked: post.booked,
     });
+  };
+
+  const removeHandler = (post) => {
+    Alert.alert(
+      "Удаление",
+      "Вы уверены, что хотите удалить?",
+      [
+        {
+          text: "Отмена",
+          style: "cansel",
+        },
+        {
+          text: "Удалить",
+          style: "destructive",
+          onPress: () => {
+            navigation.navigate("Main");
+            dispatch(removePost(post.id));
+          },
+        },
+      ],
+      { cancelable: false }
+    );
   };
 
   const dispatch = useDispatch();
@@ -28,12 +51,18 @@ export const MainScreen = ({ navigation }) => {
   if (loading) {
     return (
       <View style={styles.loading}>
-        <ActivityIndicator color={THEME.MAIN_COLOR}/>
+        <ActivityIndicator color={THEME.MAIN_COLOR} />
       </View>
     );
   }
 
-  return <PostList data={allPosts} onOpen={openPostHandler} />;
+  return (
+    <PostList
+      data={allPosts}
+      onOpen={openPostHandler}
+      onRemove={removeHandler}
+    />
+  );
 };
 
 MainScreen.navigationOptions = ({ navigation }) => ({
